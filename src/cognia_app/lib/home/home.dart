@@ -74,7 +74,9 @@ class Home extends StatelessWidget {
             ),
             Padding(
               child:RaisedButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context, '/about');
+                },
                 child: Padding(
                   child:Text('About', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),

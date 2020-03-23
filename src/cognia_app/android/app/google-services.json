@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "869443355800",
+    "firebase_url": "https://cognia-81a48.firebaseio.com",
+    "project_id": "cognia-81a48",
+    "storage_bucket": "cognia-81a48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869443355800:android:7367da0d32200ddf4b3ced",
+        "android_client_info": {
+          "package_name": "cogniaapp.cognia_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869443355800-9qikce6212e77fas1bd75g3g1pj5pdfr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cogniaapp.cognia_app",
+            "certificate_hash": "426b79171c59d6746da828b76185552db1b63e75"
+          }
+        },
+        {
+          "client_id": "869443355800-u5mmvkn6agi2j9msqt5e6njena7ul60n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwEsS_HX7Q5FLuOyeYa5nsyq4-MWe14nU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869443355800-u5mmvkn6agi2j9msqt5e6njena7ul60n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
