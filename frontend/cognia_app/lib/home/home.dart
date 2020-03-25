@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
               child:RaisedButton(
                 onPressed: (){},
                 child: Padding(
-                  child:Text('Memory', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
+                  child:Text('Location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
                 color: Colors.redAccent,
@@ -54,7 +54,7 @@ class Home extends StatelessWidget {
               child:RaisedButton(
                 onPressed: (){},
                 child: Padding(
-                  child:Text('Location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
+                  child:Text('Memos', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
                 color: Colors.amber,
