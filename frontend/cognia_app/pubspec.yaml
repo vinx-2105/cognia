@@ -19,6 +19,9 @@ environment:
 dependencies:
   firebase_auth: ^0.15.5+3
   google_sign_in: ^4.2.0
+  google_maps_flutter: ^0.5.11
+  geolocator: ^5.3.0
+  flutter_spinkit: "^4.1.2"
   flutter:
     sdk: flutter
 
