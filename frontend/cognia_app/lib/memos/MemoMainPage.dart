@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class Memos extends StatelessWidget {
 
-  final double menuFontSize = 26.0;
-  final double menuTextPadding = 30.0;
-  final double raisedButtonMargin = 10.0;
+  final double menuFontSize = 16.0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,29 +13,53 @@ class Memos extends StatelessWidget {
         centerTitle: true,
       ),
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          FlatButton(
-            onPressed: (){},
-            child: Padding(
-              child:Text('My People', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
-              padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
+          Padding(
+            child: FlatButton(
+              onPressed: (){
+                Navigator.pushNamed(context, '/memoimagegrid');
+              },
+              padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.folder, size: 120.0, color: Colors.blueAccent,),
+                  Text(
+                    'My People',
+                    style: TextStyle(fontSize: menuFontSize),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  side: BorderSide(color: Colors.deepPurple[500]),
+              ),
             ),
-            shape: RoundedRectangleBorder(
+            padding: EdgeInsets.all(20.0)
+          ),
+          SizedBox(height: 10.0),
+          Padding(
+            child: FlatButton(
+              onPressed: (){},
+              padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.folder, size: 120.0, color: Colors.blueAccent,),
+                  Text('My Places',
+                    style: TextStyle(fontSize: menuFontSize),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+              shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0),
                 side: BorderSide(color: Colors.deepPurple[500]),
+              ),
             ),
-          ),
-          FlatButton(
-            onPressed: (){},
-            child: Padding(
-              child:Text('My Places', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
-              padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              side: BorderSide(color: Colors.deepPurple[500]),
-            ),
+            padding: EdgeInsets.all(20.0),
           ),
         ],
       ),
