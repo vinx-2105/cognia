@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('COGNIA', style: TextStyle(fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.deepPurple[600],
         centerTitle: true,
       ),
       body: Container(
@@ -24,7 +24,10 @@ class Home extends StatelessWidget {
                   child:Text('NAT', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
-                color: Colors.redAccent,
+                color: Colors.deepPurple[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
               ),
               padding: EdgeInsets.all(raisedButtonMargin),
             ),
@@ -35,7 +38,10 @@ class Home extends StatelessWidget {
                   child:Text('Games', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
-                color: Colors.amber,
+                color: Colors.deepPurple[700],
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
               ),
               padding: EdgeInsets.all(raisedButtonMargin),
             ),
@@ -46,18 +52,26 @@ class Home extends StatelessWidget {
                   child:Text('Location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
-                color: Colors.redAccent,
+                color: Colors.deepPurple[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
               ),
               padding: EdgeInsets.all(raisedButtonMargin),
             ),
             Padding(
               child:RaisedButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context, '/memos');
+                },
                 child: Padding(
-                  child:Text('Memos', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
+                  child:Text('My Memos', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
-                color: Colors.amber,
+                color: Colors.deepPurple[700],
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
               ),
               padding: EdgeInsets.all(raisedButtonMargin),
             ),
@@ -68,7 +82,10 @@ class Home extends StatelessWidget {
                   child:Text('Profile', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
-                color: Colors.redAccent,
+                color: Colors.deepPurple[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
               ),
               padding: EdgeInsets.all(raisedButtonMargin),
             ),
@@ -81,7 +98,10 @@ class Home extends StatelessWidget {
                   child:Text('About', style: TextStyle(fontWeight: FontWeight.bold, fontSize: menuFontSize),),
                   padding: EdgeInsets.fromLTRB(0.0, menuTextPadding, 0.0, menuTextPadding),
                 ),
-                color: Colors.amber,
+                color: Colors.deepPurple[700],
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
               ),
               padding: EdgeInsets.all(raisedButtonMargin),
             ),
