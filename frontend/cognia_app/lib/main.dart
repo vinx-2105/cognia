@@ -9,7 +9,8 @@ import './providers/pictures.dart';
 
 //Memos
 import 'memos/MemoMainPage.dart';
-import 'memos/MemoImageGrid.dart';
+import 'memos/MemoImageGridPeople.dart';
+import 'memos/MemoImageGridPlaces.dart';
 
 //Location
 import 'location/locationHome.dart';
@@ -49,7 +50,8 @@ class MyApp extends StatelessWidget {
 
             //Memo pages
             '/memos' : (context) => Memos(),
-            MemoImageGrid.routeName: (ctx) => MemoImageGrid(),
+            MemoImageGridPeople.routeName: (ctx) => MemoImageGridPeople(),
+            MemoImageGridPlaces.routeName: (ctx) => MemoImageGridPlaces(),
 
             //Location pages
             '/locationHome' : (context) => LocationHome(),

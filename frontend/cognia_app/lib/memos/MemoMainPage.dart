@@ -1,4 +1,6 @@
+import 'package:cognia_app/widgets/images_grid.dart';
 import 'package:flutter/material.dart';
+import '../widgets/images_grid.dart';
 
 class Memos extends StatelessWidget {
 
@@ -18,7 +20,7 @@ class Memos extends StatelessWidget {
           Padding(
             child: FlatButton(
               onPressed: (){
-                Navigator.pushNamed(context, '/memoimagegrid');
+                Navigator.pushNamed(context, '/memoimagegridpeople');
               },
               padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
               child: Column(
@@ -42,7 +44,9 @@ class Memos extends StatelessWidget {
           SizedBox(height: 10.0),
           Padding(
             child: FlatButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushNamed(context, '/memoimagegridplaces');
+              },
               padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
