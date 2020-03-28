@@ -6,6 +6,20 @@ class ShowLocation extends StatelessWidget {
   Map dataRecv = {};
   Placemark placemark;
 
+  RoundedRectangleBorder shape =  RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      side: BorderSide(
+        color: Colors.black,
+        width: 2.0,
+      )
+  );
+
+  TextStyle textStyle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 2,
+  );
+
   @override
   Widget build(BuildContext context) {
 
@@ -29,43 +43,60 @@ class ShowLocation extends StatelessWidget {
         title: Text('Location Information'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Card(
-              color: Colors.grey[200],
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text('Position', style: headingStyle),
-                  Text('Latitute  : ${placemark.position.latitude}', style: textStyle),
-                  Text('Longitute : ${placemark.position.longitude}', style: textStyle),
-                ],
+              shape: shape,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('POSITION',style: headingStyle),
+                    Row(
+                      children: <Widget>[
+                        Text('Latitute  : ', style: textStyle),
+                        Text('${placemark.position.latitude}', style: textStyle),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text('Longitute : ', style: textStyle),
+                        Text('${placemark.position.longitude}', style: textStyle),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Card(
-              color: Colors.grey[200],
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Address', style: headingStyle),
-                    Text('Name : ${placemark.name}', style: textStyle),
-                    Text('ThroughFare : ${placemark.thoroughfare}', style: textStyle),
-                    Text('Sub Locality : ${placemark.subLocality}', style: textStyle),
-                    Text('Locality : ${placemark.locality}', style: textStyle),
-                    Text('Postal Code : ${placemark.postalCode}', style: textStyle),
-                    Text('Country : ${placemark.country}', style: textStyle),
-                  ],
-                )
+              shape: shape,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('ADDRESS', style: headingStyle),
+                      Text('Name : ${placemark.name}', style: textStyle),
+                      Text('ThroughFare : ${placemark.thoroughfare}', style: textStyle),
+                      Text('Sub Locality : ${placemark.subLocality}', style: textStyle),
+                      Text('Locality : ${placemark.locality}', style: textStyle),
+                      Text('Postal Code : ${placemark.postalCode}', style: textStyle),
+                      Text('Country : ${placemark.country}', style: textStyle),
+                    ],
+                  ),
+              )
             ),
             FlatButton(
                 onPressed: () {Navigator.pushNamed(context, '/map', arguments: {'placemark': placemark});},
-                child: Text("Show on Map"),
-                color: Colors.grey[200],
+                child: Text("Show on Map", style: textStyle,),
+                shape: shape,
+                color: Colors.blueAccent,
             ),
           ],
         ),

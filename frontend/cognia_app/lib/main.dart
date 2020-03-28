@@ -18,6 +18,7 @@ import 'location/userLocation.dart';
 import 'location/showLocation.dart';
 import 'location/locate.dart';
 import 'location/map.dart';
+import 'location/monitorPath.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
+          initialRoute: '/home', // Remove this to make login Page home
           routes: {
             '/': (context)=>LoginPage(),
             '/about': (context)=>About(),
@@ -56,6 +58,7 @@ class MyApp extends StatelessWidget {
             //Location pages
             '/locationHome' : (context) => LocationHome(),
             '/userLocation': (context) => CurrentLocation(),
+            '/monitorPath' : (context) => MonitorPath(),
             '/locate': (context) => Locate(),
             '/showLocation': (context) => ShowLocation(),
             '/map': (context) => ShowMap(),
