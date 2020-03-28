@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/images_grid.dart';
 import 'dart:io';
 import 'dart:math';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart' as pPath;
-import 'package:provider/provider.dart';
-import '../models/picture.dart';
-import '../providers/pictures.dart';
+
 
 class MemoImageGridPlaces extends StatefulWidget {
   static const routeName = '/memoimagegridplaces';
@@ -79,6 +74,30 @@ class _MemoImageGridPlacesState extends State<MemoImageGridPlaces> {
     setState((){});
   }
 
+  Future<void> _openImage(context, fileName) async {
+    showDialog(
+      context: context,
+      builder: (a) => AlertDialog(
+        title: Text("Captions: to be added soon!"),
+        content: Image.file(
+          fileName,
+          fit: BoxFit.cover,
+        ),
+        actions: <Widget>[
+          FlatButton(
+              onPressed: () {
+                _dismissDialog(context);
+              },
+              child: Text('Close'))
+        ],
+      ),
+    );
+  }
+
+  _dismissDialog(context) {
+    Navigator.pop(context);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +105,7 @@ class _MemoImageGridPlacesState extends State<MemoImageGridPlaces> {
     return Scaffold(
       appBar: AppBar(
         title: Text('MY PLACES', style: TextStyle(fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.deepPurple[500],
+        backgroundColor: Colors.lightGreen[500],
         centerTitle: true,
       ),
       body: Container(
@@ -101,19 +120,22 @@ class _MemoImageGridPlacesState extends State<MemoImageGridPlaces> {
           //child: images.length == 0  ? Text('Add some images'): ImageItem(),
           //),
           itemBuilder: (ctx, i) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(blurRadius: 20),
-                ],
+            return GestureDetector(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black),
+                ),
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                height: 250,
+                child:  Image.file(
+                  fileList[i],
+                  fit: BoxFit.cover,
+                ),
               ),
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
-              height: 250,
-              child:  Image.file(
-                fileList[i],
-                fit: BoxFit.cover,
-              ),
+              onTap: () {
+                _openImage(context, fileList[i]);
+              },
             );
           },
         ),
