@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/images_grid.dart';
 import 'dart:io';
 import 'dart:math';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart' as pPath;
-import 'package:provider/provider.dart';
-import '../models/picture.dart';
-import '../providers/pictures.dart';
 
 class MemoImageGridPeople extends StatefulWidget {
   static const routeName = '/memoimagegridpeople';
@@ -61,7 +55,7 @@ class _MemoImageGridPeopleState extends State<MemoImageGridPeople> {
 
     //var _imageToStore = Picture(picName: savedImage);
     //_storeImage() {
-      //Provider.of<Pictures>(context, listen: false).storeImage(_imageToStore);
+    //Provider.of<Pictures>(context, listen: false).storeImage(_imageToStore);
     //}
     //_storeImage();
     _generateImageList();
@@ -79,6 +73,30 @@ class _MemoImageGridPeopleState extends State<MemoImageGridPeople> {
     setState((){});
   }
 
+  Future<void> _openImage(context, fileName) async {
+    showDialog(
+      context: context,
+      builder: (a) => AlertDialog(
+        title: Text("Captions: to be added soon!"),
+        content: Image.file(
+          fileName,
+          fit: BoxFit.cover,
+        ),
+        actions: <Widget>[
+          FlatButton(
+              onPressed: () {
+                _dismissDialog(context);
+              },
+              child: Text('Close'))
+        ],
+      ),
+    );
+  }
+
+  _dismissDialog(context) {
+    Navigator.pop(context);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +104,13 @@ class _MemoImageGridPeopleState extends State<MemoImageGridPeople> {
     return Scaffold(
       appBar: AppBar(
         title: Text('MY PEOPLE', style: TextStyle(fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.deepPurple[500],
+        backgroundColor: Colors.lightGreen[500],
         centerTitle: true,
       ),
       body: Container(
         //child: ImagesGrid(),
         child:
-          GridView.builder(
+        GridView.builder(
           padding: const EdgeInsets.all(10.0),
           itemCount: fileList.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10.0),
@@ -101,19 +119,22 @@ class _MemoImageGridPeopleState extends State<MemoImageGridPeople> {
           //child: images.length == 0  ? Text('Add some images'): ImageItem(),
           //),
           itemBuilder: (ctx, i) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(blurRadius: 20),
-                ],
+            return GestureDetector(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black),
+                ),
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                height: 250,
+                child:  Image.file(
+                  fileList[i],
+                  fit: BoxFit.cover,
+                ),
               ),
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
-              height: 250,
-              child:  Image.file(
-                fileList[i],
-                fit: BoxFit.cover,
-              ),
+              onTap: () {
+                _openImage(context, fileList[i]);
+              },
             );
           },
         ),

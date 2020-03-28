@@ -1,21 +1,20 @@
-import 'package:cognia_app/widgets/images_grid.dart';
 import 'package:flutter/material.dart';
-import '../widgets/images_grid.dart';
 
 class Memos extends StatelessWidget {
 
-  final double menuFontSize = 16.0;
+  final double menuFontSize = 18.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('MY MEMOS', style: TextStyle(fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.deepPurple[500],
+        backgroundColor: Colors.lightGreen[500],
         centerTitle: true,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
         children: <Widget>[
           Padding(
             child: FlatButton(
@@ -26,7 +25,7 @@ class Memos extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(Icons.folder, size: 120.0, color: Colors.blueAccent,),
+                  Icon(Icons.account_circle, size: 120.0, color: Colors.blueAccent,),
                   Text(
                     'My People',
                     style: TextStyle(fontSize: menuFontSize),
@@ -35,13 +34,15 @@ class Memos extends StatelessWidget {
                 ],
               ),
               shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(10.0),
-                  side: BorderSide(color: Colors.deepPurple[500]),
+                  borderRadius: new BorderRadius.circular(40.0),
+                  side: BorderSide(
+                      color: Colors.black,
+                      width: 2.0,
+                  ),
               ),
             ),
-            padding: EdgeInsets.all(20.0)
+            padding: EdgeInsets.all(10.0)
           ),
-          SizedBox(height: 10.0),
           Padding(
             child: FlatButton(
               onPressed: (){
@@ -51,7 +52,7 @@ class Memos extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(Icons.folder, size: 120.0, color: Colors.blueAccent,),
+                  Icon(Icons.explore, size: 120.0, color: Colors.blueAccent,),
                   Text('My Places',
                     style: TextStyle(fontSize: menuFontSize),
                     textAlign: TextAlign.center,
@@ -59,11 +60,15 @@ class Memos extends StatelessWidget {
                 ],
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-                side: BorderSide(color: Colors.deepPurple[500]),
+                borderRadius: new BorderRadius.circular(40.0),
+                side: BorderSide(
+                  color: Colors.black,
+
+                  width: 2.0,
+                ),
               ),
             ),
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(10.0),
           ),
         ],
       ),
