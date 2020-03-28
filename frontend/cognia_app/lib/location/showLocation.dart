@@ -23,7 +23,7 @@ class ShowLocation extends StatelessWidget {
   RoundedRectangleBorder btnShape =  RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20.0),
       side: BorderSide(
-        color: Colors.white,
+        color: Colors.black,
         width: 3.0,
       )
   );
@@ -32,7 +32,7 @@ class ShowLocation extends StatelessWidget {
     fontSize: 22,
     fontWeight: FontWeight.bold,
     letterSpacing: 2,
-    color: Colors.white,
+    color: Colors.black,
   );
 
   @override
@@ -45,14 +45,14 @@ class ShowLocation extends StatelessWidget {
       fontWeight: FontWeight.w600,
       letterSpacing: 3,
       fontSize: 24,
-      color: Colors.white,
+      color: Colors.black,
     );
 
     TextStyle textStyle = TextStyle(
       fontWeight: FontWeight.w400,
       letterSpacing: 1.5,
       fontSize: 18,
-      color: Colors.white,
+      color: Colors.black,
     );
 
     return Scaffold(
@@ -60,9 +60,6 @@ class ShowLocation extends StatelessWidget {
         title: Text('Location Information'),
       ),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
-        ),
         padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

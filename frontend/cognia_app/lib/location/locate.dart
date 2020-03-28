@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,9 +12,18 @@ class _LocateState extends State<Locate> {
   final searchFieldController = TextEditingController();
   Widget _child;
 
+  RoundedRectangleBorder btnShape =  RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20.0),
+      side: BorderSide(
+        color: Colors.white,
+        width: 3.0,
+      )
+  );
+
   @override
   void initState() {
     super.initState();
+
     _child = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -26,9 +33,9 @@ class _LocateState extends State<Locate> {
           decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Enter address',
-              labelStyle: TextStyle(color: Colors.white, fontSize: 18),
               hintStyle: TextStyle(color: Colors.white, fontSize: 18),
           ),
+            style: TextStyle(color: Colors.white, fontSize: 18),
         ),
         FlatButton.icon(
           onPressed: () {
@@ -42,6 +49,7 @@ class _LocateState extends State<Locate> {
           },
           icon: Icon(Icons.search),
           label: Text('Search', style: TextStyle(color: Colors.white, fontSize: 18),),
+          shape: btnShape,
         ),
       ],
     );
@@ -65,10 +73,8 @@ class _LocateState extends State<Locate> {
         title: Text('Locate Address'),
       ),
       body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
-          ),
-          child: _child),
-    );
+          child: _child
+        ),
+      );
   }
 }

@@ -5,7 +5,7 @@ class LocationHome extends StatelessWidget {
   RoundedRectangleBorder shape =  RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(20.0),
     side: BorderSide(
-      color: Colors.white,
+      color: Colors.black,
       width: 3.0,
       )
     );
@@ -14,7 +14,7 @@ class LocationHome extends StatelessWidget {
     fontSize: 18,
     fontWeight: FontWeight.bold,
     letterSpacing: 2,
-    color: Colors.white,
+    color: Colors.black,
   );
 
   @override
@@ -26,9 +26,6 @@ class LocationHome extends StatelessWidget {
         backgroundColor: Colors.blueAccent[700],
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
-        ),
         child: Padding(
           padding: const EdgeInsets.all(50.0),
           child: Column(

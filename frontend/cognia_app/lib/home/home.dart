@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
     RoundedRectangleBorder btnShape =  RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40.0),
         side: BorderSide(
-          color: Colors.white,
+          color: Colors.black,
           width: 3.0,
         )
     );
@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
     TextStyle menuTextStyle = TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: menuFontSize,
-        color: Colors.white,
+        color: Colors.black,
         letterSpacing: 4.0,
     );
 
@@ -33,9 +33,6 @@ class Home extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
-        ),
         padding: EdgeInsets.fromLTRB(0, menuTopMargin, 0, 0),
         child: ListView(
           children: <Widget>[

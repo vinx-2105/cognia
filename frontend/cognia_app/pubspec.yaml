@@ -26,6 +26,7 @@ dependencies:
   image_picker: ^0.6.3+4
   path_provider: ^1.6.5
   path: ^1.6.4
+  flutter_polyline_points: ^0.1.0
   flutter:
     sdk: flutter
 
@@ -44,8 +45,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  uses-material-design: true
   assets:
-    - assets/images/
+    - assets/images/cognia_logo.png
+    - assets/images/google_logo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
