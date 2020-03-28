@@ -55,9 +55,9 @@ class LocationHome extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
                 child: FlatButton.icon(
-                  onPressed: () {Navigator.pushNamed(context, '/homeRoute');},
+                  onPressed: () {Navigator.pushNamed(context, '/getRoute');},
                   icon: Icon(Icons.arrow_right),
-                  label: Text('Home Route', style: textStyle,),
+                  label: Text('Get Route', style: textStyle,),
                   shape: shape,
                   padding: EdgeInsets.all(10.0),
                 ),

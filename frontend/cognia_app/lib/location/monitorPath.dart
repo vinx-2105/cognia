@@ -11,7 +11,7 @@ class MonitorPath extends StatefulWidget {
 
 class _MonitorPathState extends State<MonitorPath> {
 
-  List <Position> positionList;
+  List <Position> positionList = [];
 
   Geolocator geolocator = Geolocator();
   LocationOptions locationOptions = LocationOptions(
@@ -32,15 +32,11 @@ class _MonitorPathState extends State<MonitorPath> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    positionList = [];
-    monitorPath();
-  }
 
   @override
   Widget build(BuildContext context) {
+
+    monitorPath();
 
     return Scaffold(
       appBar: AppBar(

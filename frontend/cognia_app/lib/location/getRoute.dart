@@ -3,6 +3,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:toast/toast.dart';
 
 class GetRoute extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _GetRouteState extends State<GetRoute> {
   RoundedRectangleBorder btnShape =  RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20.0),
       side: BorderSide(
-        color: Colors.white,
+        color: Colors.black,
         width: 3.0,
       )
   );
@@ -47,32 +48,38 @@ class _GetRouteState extends State<GetRoute> {
         // icon: destinationIcon
     ));
 
-    List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
-        "AIzaSyCC2xndO0zmFRa8aklCldGTPmjDfOYRhVU",
-        sourcePlacemark[0].position.latitude,
-        sourcePlacemark[0].position.longitude,
-        destPlacemark[0].position.latitude,
-        destPlacemark[0].position.longitude
+    List<PointLatLng> result = [];
+    try {
+      result = await polylinePoints.getRouteBetweenCoordinates(
+          "AIzaSyCU3YuZYey8FVf2-21iWhGxrrLESYy_zxo",
+          sourcePlacemark[0].position.latitude,
+          sourcePlacemark[0].position.longitude,
+          destPlacemark[0].position.latitude,
+          destPlacemark[0].position.longitude
       );
-
+    }catch(e){
+      print(">>>> ERROR : $e");
+    }
     if(result.isNotEmpty){
       result.forEach((PointLatLng point){
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+        
+        Polyline polyline = Polyline(
+          polylineId: PolylineId('srcDestRoute'),
+          color: Colors.blueAccent,
+          points: polylineCoordinates,
+        );
+
+        _polylines.add(polyline);
+
+        Navigator.pushNamed(context, '/plotRoute', arguments: {
+          'markers': _markers,
+          'polylines': _polylines,
+        });
       });
+    }else{
+      Toast.show('Could not fetch route !', context);
     }
-
-    Polyline polyline = Polyline(
-        polylineId: PolylineId('srcDestRoute'),
-        color: Colors.blueAccent,
-        points: polylineCoordinates,
-    );
-
-    _polylines.add(polyline);
-
-    Navigator.pushNamed(context, '/plotRoute', arguments: {
-      'markers': _markers,
-      'polylines': _polylines,
-    });
   }
 
   @override
@@ -82,37 +89,38 @@ class _GetRouteState extends State<GetRoute> {
     _childWidget = Padding(
         padding: EdgeInsets.all(15.0),
         child: Column(
+
           children: <Widget>[
             TextField(
                 controller: sourceField,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Source Address',
-                  hintStyle: TextStyle(color: Colors.white, fontSize: 18),
+                  hintStyle: TextStyle(fontSize: 18),
                 ),
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(fontSize: 18),
             ),
             TextField(
               controller: destField,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Enter Destination Address',
-                hintStyle: TextStyle(color: Colors.white, fontSize: 18),
+                hintStyle: TextStyle(fontSize: 18),
               ),
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(fontSize: 18),
             ),
             FlatButton.icon(
               onPressed: () {
                 getRoute();
                 setState(() {
                   _childWidget = SpinKitFadingCube(
-                    color: Colors.white,
+                    color: Colors.blue,
                     size: 80.0,
                   );
                 });
               },
               icon: Icon(Icons.directions),
-              label: Text('Get Route', style: TextStyle(color: Colors.white, fontSize: 18),),
+              label: Text('Get Route', style: TextStyle(fontSize: 18),),
               shape: btnShape,
             ),
           ],

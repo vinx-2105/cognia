@@ -27,6 +27,7 @@ dependencies:
   path_provider: ^1.6.5
   path: ^1.6.4
   flutter_polyline_points: ^0.1.0
+  toast: ^0.1.5
   flutter:
     sdk: flutter
 

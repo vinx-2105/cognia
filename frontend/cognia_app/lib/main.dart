@@ -19,6 +19,9 @@ import 'location/showLocation.dart';
 import 'location/locate.dart';
 import 'location/map.dart';
 import 'location/monitorPath.dart';
+import 'location/getRoute.dart';
+import 'location/plotRoute.dart';
+import 'location/setHome.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Container(
         child: MaterialApp(
-          title: 'Camera & Gallery Tutorial',
+          title: 'Conia App',
           theme: ThemeData(
             primarySwatch: Theme.of(context).primaryColor,
             accentColor: Colors.teal,
@@ -61,8 +64,9 @@ class MyApp extends StatelessWidget {
             '/monitorPath' : (context) => MonitorPath(),
             '/locate': (context) => Locate(),
             '/showLocation': (context) => ShowLocation(),
-            '/setHome': (context) => LocationHome(),
-            '/homeRoute': (context) => LocationHome(),
+            '/setHome': (context) => SetHome(),
+            '/getRoute': (context) => GetRoute(),
+            '/plotRoute': (context) => PlotRoute(),
             '/map': (context) => ShowMap(),
           },
         ),

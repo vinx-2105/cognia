@@ -15,7 +15,7 @@ class _LocateState extends State<Locate> {
   RoundedRectangleBorder btnShape =  RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20.0),
       side: BorderSide(
-        color: Colors.white,
+        color: Colors.black,
         width: 3.0,
       )
   );
@@ -33,22 +33,22 @@ class _LocateState extends State<Locate> {
           decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Enter address',
-              hintStyle: TextStyle(color: Colors.white, fontSize: 18),
+              hintStyle: TextStyle( fontSize: 18),
           ),
-            style: TextStyle(color: Colors.white, fontSize: 18),
+            style: TextStyle(fontSize: 18),
         ),
         FlatButton.icon(
           onPressed: () {
             getLocation();
             setState(() {
               _child = SpinKitFadingCube(
-                color: Colors.white,
+                color: Colors.blue,
                 size: 80.0,
               );
             });
           },
           icon: Icon(Icons.search),
-          label: Text('Search', style: TextStyle(color: Colors.white, fontSize: 18),),
+          label: Text('Search', style: TextStyle(fontSize: 18),),
           shape: btnShape,
         ),
       ],
