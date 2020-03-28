@@ -7,7 +7,7 @@ class ShowLocation extends StatelessWidget {
   Placemark placemark;
 
   RoundedRectangleBorder shape =  RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8.0),
+      borderRadius: BorderRadius.circular(10.0),
       side: BorderSide(
         color: Colors.black,
         width: 2.0,
@@ -20,6 +20,21 @@ class ShowLocation extends StatelessWidget {
     letterSpacing: 2,
   );
 
+  RoundedRectangleBorder btnShape =  RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20.0),
+      side: BorderSide(
+        color: Colors.white,
+        width: 3.0,
+      )
+  );
+
+  TextStyle btnTextStyle = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 2,
+    color: Colors.white,
+  );
+
   @override
   Widget build(BuildContext context) {
 
@@ -27,22 +42,27 @@ class ShowLocation extends StatelessWidget {
     placemark = dataRecv['placemark'];
 
     TextStyle headingStyle = TextStyle(
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       letterSpacing: 3,
       fontSize: 24,
+      color: Colors.white,
     );
 
     TextStyle textStyle = TextStyle(
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w400,
       letterSpacing: 1.5,
-      fontSize: 16,
+      fontSize: 18,
+      color: Colors.white,
     );
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Location Information'),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
+        ),
         padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,47 +76,25 @@ class ShowLocation extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('POSITION',style: headingStyle),
-                    Row(
-                      children: <Widget>[
-                        Text('Latitute  : ', style: textStyle),
-                        Text('${placemark.position.latitude}', style: textStyle),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text('Longitute : ', style: textStyle),
-                        Text('${placemark.position.longitude}', style: textStyle),
-                      ],
-                    ),
+                    Center(child: Text('POSITION',style: headingStyle)),
+                    Text('Latitute  : ${placemark.position.latitude}', style: textStyle),
+                    Text('Longitute : ${placemark.position.longitude}', style: textStyle),
+                    Center(child: Text('ADDRESS', style: headingStyle)),
+                    Text('Name : ${placemark.name}', style: textStyle),
+                    Text('ThroughFare : ${placemark.thoroughfare}', style: textStyle),
+                    Text('Sub Locality : ${placemark.subLocality}', style: textStyle),
+                    Text('Locality : ${placemark.locality}', style: textStyle),
+                    Text('Postal Code : ${placemark.postalCode}', style: textStyle),
+                    Text('Country : ${placemark.country}', style: textStyle),
                   ],
                 ),
               ),
             ),
-            Card(
-              shape: shape,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('ADDRESS', style: headingStyle),
-                      Text('Name : ${placemark.name}', style: textStyle),
-                      Text('ThroughFare : ${placemark.thoroughfare}', style: textStyle),
-                      Text('Sub Locality : ${placemark.subLocality}', style: textStyle),
-                      Text('Locality : ${placemark.locality}', style: textStyle),
-                      Text('Postal Code : ${placemark.postalCode}', style: textStyle),
-                      Text('Country : ${placemark.country}', style: textStyle),
-                    ],
-                  ),
-              )
-            ),
             FlatButton(
                 onPressed: () {Navigator.pushNamed(context, '/map', arguments: {'placemark': placemark});},
-                child: Text("Show on Map", style: textStyle,),
-                shape: shape,
-                color: Colors.blueAccent,
+                child: Text("Show on Map", style: btnTextStyle,),
+                shape: btnShape,
+                padding: EdgeInsets.all(10),
             ),
           ],
         ),

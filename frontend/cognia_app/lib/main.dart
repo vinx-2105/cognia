@@ -61,6 +61,8 @@ class MyApp extends StatelessWidget {
             '/monitorPath' : (context) => MonitorPath(),
             '/locate': (context) => Locate(),
             '/showLocation': (context) => ShowLocation(),
+            '/setHome': (context) => LocationHome(),
+            '/homeRoute': (context) => LocationHome(),
             '/map': (context) => ShowMap(),
           },
         ),

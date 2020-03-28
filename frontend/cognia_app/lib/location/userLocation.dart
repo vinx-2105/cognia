@@ -19,9 +19,14 @@ class CurrentLocation extends StatelessWidget {
       appBar: AppBar(
         title: Text('Getting User Location'),
       ),
-      body: SpinKitFadingCube(
-        color: Colors.blueAccent,
-        size: 80.0,
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
+        ),
+        child: SpinKitFadingCube(
+          color: Colors.white,
+          size: 80.0,
+        ),
       ),
     );
   }

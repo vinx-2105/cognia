@@ -25,21 +25,23 @@ class _LocateState extends State<Locate> {
           controller: searchFieldController,
           decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Enter address'
+              hintText: 'Enter address',
+              labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+              hintStyle: TextStyle(color: Colors.white, fontSize: 18),
           ),
         ),
-        FlatButton(
+        FlatButton.icon(
           onPressed: () {
             getLocation();
             setState(() {
               _child = SpinKitFadingCube(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 size: 80.0,
               );
             });
           },
-          child: Text('Search address'),
-          color: Colors.grey[200],
+          icon: Icon(Icons.search),
+          label: Text('Search', style: TextStyle(color: Colors.white, fontSize: 18),),
         ),
       ],
     );
@@ -62,7 +64,11 @@ class _LocateState extends State<Locate> {
       appBar: AppBar(
         title: Text('Locate Address'),
       ),
-      body: _child,
+      body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage('assets/images/appBg1.jpg'), fit: BoxFit.cover)
+          ),
+          child: _child),
     );
   }
 }

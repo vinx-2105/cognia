@@ -45,8 +45,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/images/google_logo.png
-    - assets/images/cognia_logo.png
+    - assets/images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
