@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 150),
+              Image(image: AssetImage("assets/images/cognia_logo.png")),
               SizedBox(height: 50),
               _signInButton(),
             ],
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(image: AssetImage("assets/images/google_logo.png"), height: 35.0),
+            Image(image: AssetImage("assets/images/google_logo.png"), height: 20.0),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
