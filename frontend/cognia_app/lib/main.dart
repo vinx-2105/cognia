@@ -1,8 +1,14 @@
+import 'package:cognia_app/profile/ProfilePage.dart';
 import 'package:flutter/material.dart';
 
 import 'home/home.dart';
 import 'about/about.dart';
-import 'home/login_page.dart';
+
+//login and signup
+import 'home/SignUpForm.dart';
+import 'home/SignInForm.dart';
+
+import 'home/trial.dart';
 
 //Memos
 import 'memos/MemoMainPage.dart';
@@ -26,11 +32,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/home', // Remove this to make login Page home
+      initialRoute: '/', // Remove this to make login Page home
       routes: {
-        '/': (context)=>LoginPage(),
+        '/': (context)=>Trial(),
         '/about': (context)=>About(),
         '/home':(context)=>Home(),
+
+        '/profile':(context)=>ProfilePage(),
+
+        '/signup': (context)=>SignUpForm(),
+        '/signin': (context)=>SignInForm(),
 
         //Memo pages
         '/memos' : (context) => Memos(),
@@ -51,4 +62,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
