@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
@@ -21,6 +21,19 @@ from .serializers import RegistrationSerializer
 from .models import Profile
 from .tokens import *
 
+from django.db import transaction
+
+
+from django.contrib import messages
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+from django.core.mail import EmailMessage
 
 # Create your views here.
 @csrf_exempt
@@ -29,9 +42,32 @@ def signup(request):
     if request.method=='POST':
         serializer = RegistrationSerializer(data=request.data)
         data = {}
+        
         if serializer.is_valid():
-            user = serializer.save()
-            data['response'] = 'new user created successfully'
+            with transaction.atomic():
+                user = serializer.save()
+
+                # current_site = get_current_site(request)
+                try:
+                    subject = 'Activate Your COGNIA Account'
+                    message =  render_to_string('account_activation_email.html', {
+                        'user': user,
+                        'domain': 'COGNIA',
+                        'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                        'token':account_activation_token.make_token(user),
+                    })
+                    to_email = request.data.get('email')
+                    email = EmailMessage(
+                                subject, message, to=[to_email]
+                    )
+                    email.send()
+                except Exception as e:
+                    print(e)
+
+                user.is_active=False
+                user.save()
+
+            data['response'] = 'check for confirmation email'
             data['email'] = user.email
             data['username'] = user.username
             return Response(data=data, status=HTTP_200_OK)
@@ -39,6 +75,19 @@ def signup(request):
             data = serializer.errors
             return Response(data=data, status=HTTP_400_BAD_REQUEST)
 
+@csrf_exempt
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
