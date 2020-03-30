@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'SignInData.dart';
-
-
-String IP = 'http://192.168.1.4:8000';
+import '../CREDS.dart';
 
 Future<String> logIn(SignInData _signInData) async {
   final http.Response response = await http.post(

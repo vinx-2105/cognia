@@ -12,6 +12,25 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<Profile> futureProfile;
 
+
+  //returns the list of caretakers in text widgets
+  List<Widget> getCaretakers(snapshot){
+    List<Widget> res=[];
+
+    for(var i=0; i<snapshot.data.caretakers.length; i++){
+      res.add(
+        Text(
+          "   "+snapshot.data.caretakers[i],
+          style: TextStyle(fontSize: 20.0, ),
+
+        )
+      );
+    }
+    if (res.length==0)
+      res.add(Text("   None",style: TextStyle(fontSize: 20.0, )));
+    return res;
+  }
+
   @override
   void initState(){
     super.initState();
@@ -84,18 +103,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(fontSize: 20.0, ),
 
                   ),
-
                   SizedBox(height: 40.0),
                   Text(
                     "   Caretakers",
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
 
                   ),
-                  Text(
-                    "   "+snapshot.data.caretakers[0],
-                    style: TextStyle(fontSize: 20.0, ),
-
-                  ),
+                ] 
+                + 
+                this.getCaretakers(snapshot) 
+                + 
+                <Widget>[
                   Divider(
                     thickness: 1.0,
                     height: 30.0,
@@ -117,9 +135,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-
-                ],
-              ),
+                ]
+              )
             );
           }
           else if(snapshot.hasError){

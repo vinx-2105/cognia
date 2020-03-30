@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'Profile.dart';
-import '../home/AUTH_TOKEN.dart';
+import '../CREDS.dart';
 
-String IP = 'http://192.168.1.3:8000';
 
 Future<Profile> fetchUserProfile() async {
   final http.Response response = await http.post(

@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'SignUpData.dart';
+import '../CREDS.dart';
 
-String IP = 'http://192.168.1.4:8000';
 
 Future<String> registerUser(SignUpData _signUpData) async {
   final http.Response response = await http.post(

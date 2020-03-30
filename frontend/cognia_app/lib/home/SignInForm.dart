@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'signin.dart';
 import 'SignInData.dart';
-import 'AUTH_TOKEN.dart';
+import '../CREDS.dart';
 
 import 'package:email_validator/email_validator.dart';
 
 
-import 'package:hive/hive.dart';
 
 
 // Define a custom Form widget.
@@ -131,7 +130,7 @@ class SignInFormState extends State<SignInForm> {
                                 Navigator.pushNamed(context, '/home');
                                 AUTH_TOKEN=value;
                               }).catchError((err){
-                                Fluttertoast.showToast(msg: 'Error!');
+                                Fluttertoast.showToast(msg: '$err');
                               });
                               return CircularProgressIndicator();
                             }
