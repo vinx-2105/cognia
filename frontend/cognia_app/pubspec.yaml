@@ -28,6 +28,7 @@ dependencies:
   flutter_polyline_points: ^0.1.0
   toast: ^0.1.5
   fluttertoast: ^4.0.0
+  email_validator: '^1.0.0'
   flutter:
     sdk: flutter
 

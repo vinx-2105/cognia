@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'SignUpData.dart';
 
-String IP = 'http://192.168.43.106:8000';
+String IP = 'http://192.168.1.4:8000';
 
 Future<String> registerUser(SignUpData _signUpData) async {
   final http.Response response = await http.post(
@@ -25,6 +25,6 @@ Future<String> registerUser(SignUpData _signUpData) async {
     return 'User Registered';
   }
   else{
-    return response.body;
+    throw('Email already in use');
   }
 }

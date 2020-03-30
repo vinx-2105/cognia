@@ -1,5 +1,5 @@
-import 'package:cognia_app/Profile/Profile.dart';
-import 'package:cognia_app/Profile/fetch_profile.dart';
+import 'package:cognia_app/profile/Profile.dart';
+import 'package:cognia_app/profile/fetch_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -24,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('MY PROFILE'),
         centerTitle: true,
+
       ),
       body: FutureBuilder<Profile>(
         future: futureProfile,
@@ -41,6 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Text(snapshot.data.first_name[0]+snapshot.data.last_name[0], style: TextStyle(fontSize: 30.0, color: Colors.black)),
                     radius: 60.0,
                   ),
+
                   Divider(thickness: 0.5, height: 30.0,),
                   Text(
                     snapshot.data.first_name + " "+ snapshot.data.last_name,
@@ -93,6 +95,27 @@ class _ProfilePageState extends State<ProfilePage> {
                     "   "+snapshot.data.caretakers[0],
                     style: TextStyle(fontSize: 20.0, ),
 
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                    height: 30.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FlatButton(
+                      onPressed: (){
+
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        side: BorderSide(color: Colors.white, width: 2.0),
+
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text('EDIT PROFILE', style: TextStyle(color: Colors.white, fontSize: 18.0),textAlign: TextAlign.center,),
+                      ),
+                    ),
                   ),
 
                 ],

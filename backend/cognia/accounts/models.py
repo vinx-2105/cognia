@@ -7,7 +7,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
-    gender = models.CharField(max_length=1)
+    gender = models.CharField(max_length=7)
     role = models.CharField(max_length=10)
     caretakers = models.ManyToManyField("self")
 

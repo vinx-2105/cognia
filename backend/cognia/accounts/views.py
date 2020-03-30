@@ -19,6 +19,7 @@ from rest_framework.response import Response
 from .serializers import RegistrationSerializer
 
 from .models import Profile
+from .tokens import *
 
 
 # Create your views here.

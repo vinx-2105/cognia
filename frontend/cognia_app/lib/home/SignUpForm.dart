@@ -25,8 +25,6 @@ class SignUpFormState extends State<SignUpForm> {
 
   SignUpData _signUpData = new SignUpData();
 
-  Future<String> futureSignupResult;
-
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -68,20 +66,7 @@ class SignUpFormState extends State<SignUpForm> {
                     this._signUpData.last_name = value;
                   },
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Username",
-                  ),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  onSaved: (String value){
-                    this._signUpData.username = value;
-                  },
-                ),
+
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: "Email",
@@ -94,6 +79,7 @@ class SignUpFormState extends State<SignUpForm> {
                   },
                   onSaved: (String value){
                     this._signUpData.email = value;
+                    this._signUpData.username = value;
                   },
                 ),
                 TextFormField(
@@ -131,10 +117,14 @@ class SignUpFormState extends State<SignUpForm> {
                 RaisedButton(
                   onPressed: (){
                     if (_formKey.currentState.validate()) {
-                      Fluttertoast.showToast(msg: "Valid data!");
+
                       //do the signup
                       _formKey.currentState.save();
-                      futureSignupResult = registerUser(_signUpData).then(onValue);
+                      registerUser(_signUpData).then((value){
+                        Navigator.pushNamed(context, '/');
+                      }).catchError((err){
+                        Fluttertoast.showToast(msg: '$err');
+                      });
                     }
                     else
                       Fluttertoast.showToast(msg: "Invalid data!");
