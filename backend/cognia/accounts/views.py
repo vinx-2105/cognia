@@ -48,26 +48,27 @@ def signup(request):
                 user = serializer.save()
 
                 # current_site = get_current_site(request)
-                try:
-                    subject = 'Activate Your COGNIA Account'
-                    message =  render_to_string('account_activation_email.html', {
-                        'user': user,
-                        'domain': 'COGNIA',
-                        'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
-                        'token':account_activation_token.make_token(user),
-                    })
-                    to_email = request.data.get('email')
-                    email = EmailMessage(
-                                subject, message, to=[to_email]
-                    )
-                    email.send()
-                except Exception as e:
-                    print(e)
+                # try:
+                #     subject = 'Activate Your COGNIA Account'
+                #     message =  render_to_string('account_activation_email.html', {
+                #         'user': user,
+                #         'domain': 'COGNIA',
+                #         'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                #         'token':account_activation_token.make_token(user),
+                #     })
+                #     to_email = request.data.get('email')
+                #     email = EmailMessage(
+                #                 subject, message, to=[to_email]
+                #     )
+                #     email.send()
+                # except Exception as e:
+                #     print("Exception")
+                #     print(e)
 
-                user.is_active=False
-                user.save()
+                # user.is_active=False
+                # user.save()
 
-            data['response'] = 'check for confirmation email'
+            data['response'] = 'user successfully created'
             data['email'] = user.email
             data['username'] = user.username
             return Response(data=data, status=HTTP_200_OK)
