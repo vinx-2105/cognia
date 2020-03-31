@@ -58,6 +58,10 @@ class SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(20.0),
                         borderSide: BorderSide(color: Colors.white)
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(color: Colors.white)
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 20.0,color: Colors.grey[50],
                       )
@@ -85,6 +89,10 @@ class SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(20.0),
                         borderSide: BorderSide(color: Colors.white)
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(color: Colors.white)
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 20.0,color: Colors.grey[50],
                       )
@@ -109,6 +117,10 @@ class SignUpFormState extends State<SignUpForm> {
                       hintText: "email",
                       hintStyle: TextStyle(fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.bold ),
                       border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(color: Colors.white)
+                      ),
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                         borderSide: BorderSide(color: Colors.white)
                       ),
@@ -144,6 +156,10 @@ class SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(20.0),
                         borderSide: BorderSide(color: Colors.white)
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(color: Colors.white)
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 20.0,color: Colors.grey[50],
                       )
@@ -174,6 +190,10 @@ class SignUpFormState extends State<SignUpForm> {
                         borderRadius: BorderRadius.circular(20.0),
                         borderSide: BorderSide(color: Colors.white)
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(color: Colors.white)
+                      ),
                       errorStyle: TextStyle(
                         fontSize: 20.0,color: Colors.grey[50],
                       )
@@ -199,7 +219,7 @@ class SignUpFormState extends State<SignUpForm> {
                         //do the signup
                         _formKey.currentState.save();
                         registerUser(_signUpData).then((value){
-                          Navigator.pushNamed(context, '/');
+                          Navigator.popAndPushNamed(context, '/');
                         }).catchError((err){
                           Fluttertoast.showToast(msg: 'Error');
                         });

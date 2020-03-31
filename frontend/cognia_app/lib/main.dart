@@ -1,14 +1,22 @@
-import 'package:cognia_app/profile/ProfilePage.dart';
+import 'package:cognia_app/home/FirstPage.dart';
 import 'package:flutter/material.dart';
 
-import 'home/home.dart';
+import 'home/PatientHome.dart';
+import 'home/CaretakerHome.dart';
+
 import 'about/about.dart';
 
 //login and signup
 import 'home/SignUpForm.dart';
 import 'home/SignInForm.dart';
 
-import 'home/trial.dart';
+//profile
+import 'profile/UpdateProfileForm.dart';
+import 'profile/ProfilePage.dart';
+import 'profile/AddCaretakerForm.dart';
+import 'profile/RemoveCaretakerForm.dart';
+
+import 'home/FirstPage.dart';
 
 //Memos
 import 'memos/MemoMainPage.dart';
@@ -34,11 +42,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/', // Remove this to make login Page home
       routes: {
-        '/': (context)=>Trial(),
+        '/': (context)=>FirstPage(),
         '/about': (context)=>About(),
-        '/home':(context)=>Home(),
+        '/caretakerHome':(context)=>CaretakerHome(),
+        '/patientHome':(context)=>PatientHome(),
+
 
         '/profile':(context)=>ProfilePage(),
+        '/updateProfile':(context)=>UpdateProfileForm(),
+        '/addCaretaker':(context)=>AddCaretakerForm(),
+        '/removeCaretaker':(context)=>RemoveCaretakerForm(),
+
 
         '/signup': (context)=>SignUpForm(),
         '/signin': (context)=>SignInForm(),

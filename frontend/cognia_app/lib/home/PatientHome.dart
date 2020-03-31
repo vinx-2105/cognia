@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import '../CREDS.dart';
 
-class Home extends StatelessWidget {
+class PatientHome extends StatelessWidget {
 
   final double menuFontSize =18.0;
   final double menuTextPadding = 15.0;
@@ -28,9 +29,10 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('COGNIA', style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text('COGNIA: Patient', style: TextStyle(fontWeight: FontWeight.bold),),
         backgroundColor: Colors.lightGreen[500],
         centerTitle: true,
+        leading: null,
       ),
       body: Container(
           padding: EdgeInsets.fromLTRB(0, menuTopMargin, 0, 0),
@@ -41,7 +43,7 @@ class Home extends StatelessWidget {
               Padding(
                   child: FlatButton(
                     onPressed: (){},
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -66,7 +68,7 @@ class Home extends StatelessWidget {
               Padding(
                   child: FlatButton(
                     onPressed: (){},
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -93,7 +95,7 @@ class Home extends StatelessWidget {
                     onPressed: (){
                       Navigator.pushNamed(context, '/locationHome');
                     },
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -120,7 +122,7 @@ class Home extends StatelessWidget {
                     onPressed: (){
                       Navigator.pushNamed(context, '/memos');
                     },
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -147,7 +149,7 @@ class Home extends StatelessWidget {
                     onPressed: (){
                       Navigator.pushNamed(context, '/profile');
                     },
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -169,18 +171,45 @@ class Home extends StatelessWidget {
                   ),
                   padding: EdgeInsets.all(10.0)
               ),
+              // Padding(
+              //     child: FlatButton(
+              //       onPressed: (){
+              //         Navigator.pushNamed(context, '/about');
+              //       },
+              //       padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
+              //       child: Column(
+              //         mainAxisSize: MainAxisSize.min,
+              //         children: <Widget>[
+              //           Icon(Icons.bookmark_border, size: 100.0, color: Colors.blueAccent,),
+              //           Text(
+              //             'ABOUT',
+              //             style: TextStyle(fontSize: menuFontSize),
+              //             textAlign: TextAlign.center,
+              //           )
+              //         ],
+              //       ),
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: new BorderRadius.circular(40.0),
+              //         side: BorderSide(
+              //             color: Colors.black,
+              //             width: 2.0
+              //         ),
+              //       ),
+              //     ),
+              //     padding: EdgeInsets.all(10.0)
+              // ),
               Padding(
                   child: FlatButton(
                     onPressed: (){
-                      Navigator.pushNamed(context, '/about');
+                      Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route)=> false);
                     },
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Icon(Icons.bookmark_border, size: 100.0, color: Colors.blueAccent,),
+                        Icon(Icons.lock, size: 100.0, color: Colors.blueAccent,),
                         Text(
-                          'ABOUT',
+                          'LOGOUT',
                           style: TextStyle(fontSize: menuFontSize),
                           textAlign: TextAlign.center,
                         )

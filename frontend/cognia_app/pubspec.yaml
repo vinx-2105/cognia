@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  dropdown_formfield: ^0.1.1
   hive: ^1.4.1+1
   google_maps_flutter: ^0.5.11
   geolocator: ^5.3.0

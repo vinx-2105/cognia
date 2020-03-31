@@ -30,6 +30,17 @@ class _ProfilePageState extends State<ProfilePage> {
       res.add(Text("   None",style: TextStyle(fontSize: 20.0, )));
     return res;
   }
+  
+
+  String getRoleReversal(_role){
+    if (_role=='Patient'){
+      return 'Caretakers';
+    }
+    else if(_role=='Caretaker'){
+      return 'Patients';
+    }
+    throw ('Invalid role');
+  }
 
   @override
   void initState(){
@@ -51,9 +62,9 @@ class _ProfilePageState extends State<ProfilePage> {
           if (snapshot.hasData){
             return Container(
               color: Colors.lightGreen[500],
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: ListView(
+                // crossAxisAlignment: CrossAxisAlignment.stretch,
+                // mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   CircleAvatar(
@@ -104,38 +115,45 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   ),
                   SizedBox(height: 40.0),
-                  Text(
-                    "   Caretakers",
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        "   "+this.getRoleReversal(snapshot.data.role),
+                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      IconButton(icon: Icon(Icons.add_circle_outline), onPressed: () {Navigator.pushNamed(context, '/addCaretaker');},),
+                      IconButton(icon: Icon(Icons.remove_circle_outline), onPressed: () {Navigator.pushNamed(context, '/removeCaretaker');},),
 
+                    ],
                   ),
                 ] 
                 + 
                 this.getCaretakers(snapshot) 
-                + 
-                <Widget>[
-                  Divider(
-                    thickness: 1.0,
-                    height: 30.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FlatButton(
-                      onPressed: (){
+                // + 
+                // <Widget>[
+                //   Divider(
+                //     thickness: 1.0,
+                //     height: 30.0,
+                //   ),
+                //   Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: FlatButton(
+                //       onPressed: (){
+                //         Navigator.pushNamed(context, '/updateProfile');
+                //       },
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(15.0),
+                //         side: BorderSide(color: Colors.white, width: 2.0),
 
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        side: BorderSide(color: Colors.white, width: 2.0),
-
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text('EDIT PROFILE', style: TextStyle(color: Colors.white, fontSize: 18.0),textAlign: TextAlign.center,),
-                      ),
-                    ),
-                  ),
-                ]
+                //       ),
+                //       child: Padding(
+                //         padding: const EdgeInsets.all(5.0),
+                //         child: Text('EDIT PROFILE', style: TextStyle(color: Colors.white, fontSize: 18.0),textAlign: TextAlign.center,),
+                //       ),
+                //     ),
+                //   ),
+                // ]
               )
             );
           }
@@ -143,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Fluttertoast.showToast(msg: '${snapshot.error}');
             print('${snapshot.error}');
           }
-          return CircularProgressIndicator();
+          return Container(alignment:Alignment.center, child: CircularProgressIndicator());
         }
       ),
     );

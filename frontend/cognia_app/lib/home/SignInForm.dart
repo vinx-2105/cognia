@@ -1,13 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'signin.dart';
 import 'SignInData.dart';
 import '../CREDS.dart';
+import '../profile/Profile.dart';
+import '../profile/fetch_profile.dart';
 
 import 'package:email_validator/email_validator.dart';
-
+import '../PROFILE.dart';
 
 
 
@@ -31,6 +31,8 @@ class SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
 
   SignInData _signInData = new SignInData();
+
+  Future<Profile> futureProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,10 @@ class SignInFormState extends State<SignInForm> {
                             hintText: "username",
                             hintStyle: TextStyle(fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.bold ),
                             border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Colors.white)
+                            ),
+                            enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                               borderSide: BorderSide(color: Colors.white)
                             ),
@@ -99,6 +105,10 @@ class SignInFormState extends State<SignInForm> {
                               borderRadius: BorderRadius.circular(20.0),
                               borderSide: BorderSide(color: Colors.white)
                             ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Colors.white)
+                            ),
                             errorStyle: TextStyle(
                               fontSize: 20.0,color: Colors.grey[50],
                             )
@@ -127,12 +137,31 @@ class SignInFormState extends State<SignInForm> {
                               //do the signin
                               _formKey.currentState.save();
                               logIn(_signInData).then((value)  {
-                                Navigator.pushNamed(context, '/home');
                                 AUTH_TOKEN=value;
+                                //fetch the profile
+                                fetchUserProfile().then((value){
+                                  if(value.role=='Caretaker'){
+                                    //then go to home
+                                    Navigator.of(context).pushNamedAndRemoveUntil('/caretakerHome', (Route<dynamic> route)=> false);
+                                    // Navigator.pushReplacementNamed(context, '/home');
+                                  }
+                                  else if(value.role=='Patient'){
+                                    Navigator.of(context).pushNamedAndRemoveUntil('/patientHome', (Route<dynamic> route)=> false);
+                                  }
+                                  else{
+                                    //then go to profile
+                                    Navigator.pushReplacementNamed(context, '/updateProfile');
+
+                                  }
+                                  //set the profile variable
+                                  PROFILE =value;
+                                }).catchError((err){
+                                  Fluttertoast.showToast(msg: '$err');
+                                });
                               }).catchError((err){
                                 Fluttertoast.showToast(msg: '$err');
                               });
-                              return CircularProgressIndicator();
+                              return Container(alignment:Alignment.center, child: CircularProgressIndicator());
                             }
                           },
                           shape: RoundedRectangleBorder(
