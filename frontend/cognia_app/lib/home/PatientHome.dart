@@ -67,7 +67,9 @@ class PatientHome extends StatelessWidget {
               ),
               Padding(
                   child: FlatButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/games');
+                    },
                     padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,

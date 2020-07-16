@@ -34,13 +34,17 @@ import 'location/getRoute.dart';
 import 'location/plotRoute.dart';
 import 'location/setHome.dart';
 
+//Games
+import 'games/GamesMainPage.dart';
+import 'games/TileGame.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/', // Remove this to make login Page home
+      initialRoute: '/patientHome', // Remove this to make login Page home
       routes: {
         '/': (context)=>FirstPage(),
         '/about': (context)=>About(),
@@ -72,6 +76,10 @@ class MyApp extends StatelessWidget {
         '/getRoute': (context) => GetRoute(),
         '/plotRoute': (context) => PlotRoute(),
         '/map': (context) => ShowMap(),
+
+        //Games
+        '/games' : (context) => Games(),
+        '/tileGame' : (context) => TileGame(),
       },
     );
   }
