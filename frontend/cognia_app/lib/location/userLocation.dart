@@ -10,7 +10,7 @@ class CurrentLocation extends StatelessWidget {
     void getCurrentLocation() async{
       Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(position.latitude,position.longitude);
-      Navigator.pushReplacementNamed(context, '/showLocation', arguments: {'placemark': placemark[0]});
+      Navigator.pushReplacementNamed(context, '/map', arguments: {'placemark': placemark[0]});
 
     }
 

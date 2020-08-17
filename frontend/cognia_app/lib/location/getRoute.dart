@@ -15,6 +15,8 @@ class _GetRouteState extends State<GetRoute> {
   final sourceField = TextEditingController();
   final destField = TextEditingController();
 
+  final homeAddress = "IIT Ropar";
+
   Geolocator geolocator = Geolocator();
 
   Widget _childWidget;
@@ -33,8 +35,16 @@ class _GetRouteState extends State<GetRoute> {
   );
 
   void getRoute () async {
-    List<Placemark> sourcePlacemark = await geolocator.placemarkFromAddress(sourceField.text);
-    List<Placemark> destPlacemark = await geolocator.placemarkFromAddress(destField.text);
+    List<Placemark> sourcePlacemark = null;
+    if(sourceField.text == "Current Location"){
+      Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+      sourcePlacemark = await Geolocator().placemarkFromCoordinates(position.latitude,position.longitude);
+    }
+    else{
+      sourcePlacemark = await geolocator.placemarkFromAddress(sourceField.text);
+    }
+
+    List<Placemark> destPlacemark = await geolocator.placemarkFromAddress(destField.text == "Home" ? homeAddress : destField.text);
 
     _markers.add(Marker(
         markerId: MarkerId('sourcePin'),
@@ -48,10 +58,14 @@ class _GetRouteState extends State<GetRoute> {
         // icon: destinationIcon
     ));
 
+    print(sourcePlacemark[0].position.latitude);
+    print(sourcePlacemark[0].position.longitude);
+    print(destPlacemark[0].position.latitude);
+    print(destPlacemark[0].position.longitude);
     List<PointLatLng> result = [];
     try {
       result = await polylinePoints.getRouteBetweenCoordinates(
-          "AIzaSyCU3YuZYey8FVf2-21iWhGxrrLESYy_zxo",
+          "AIzaSyDhNd9rHWBNf-2j1ev3YROuccznXcV9FfA",
           sourcePlacemark[0].position.latitude,
           sourcePlacemark[0].position.longitude,
           destPlacemark[0].position.latitude,
@@ -86,45 +100,52 @@ class _GetRouteState extends State<GetRoute> {
   void initState() {
     super.initState();
 
-    _childWidget = Padding(
-        padding: EdgeInsets.all(15.0),
-        child: Column(
-
+    _childWidget = Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Image.asset('assets/images/route_icon.png', scale: 4,),
+            SizedBox(height: 25,),
             TextField(
                 controller: sourceField,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Source Address',
-                  hintStyle: TextStyle(fontSize: 18),
+                  hintStyle: TextStyle(fontSize: 22),
+                  suffixIcon: IconButton(icon: Icon(Icons.location_on), onPressed: () {sourceField.text = "Current Location";})
                 ),
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 22),
             ),
             TextField(
               controller: destField,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Enter Destination Address',
-                hintStyle: TextStyle(fontSize: 18),
+                hintStyle: TextStyle(fontSize: 22),
+                  suffixIcon: IconButton(icon: Icon(Icons.home), onPressed: () {destField.text = "Home";})
               ),
-              style: TextStyle(fontSize: 18),
-            ),
-            FlatButton.icon(
-              onPressed: () {
-                getRoute();
-                setState(() {
-                  _childWidget = SpinKitFadingCube(
-                    color: Colors.blue,
-                    size: 80.0,
-                  );
-                });
-              },
-              icon: Icon(Icons.directions),
-              label: Text('Get Route', style: TextStyle(fontSize: 18),),
-              shape: btnShape,
+              style: TextStyle(fontSize: 22),
             ),
           ],
         ),
+        FlatButton.icon(
+          onPressed: () {
+            getRoute();
+            setState(() {
+              _childWidget = SpinKitFadingCube(
+                color: Colors.blue,
+                size: 80.0,
+              );
+            });
+          },
+          icon: Icon(Icons.directions, color: Colors.blueAccent[700],),
+          label: Text('Get Route', style: TextStyle(fontSize: 22, color: Colors.blueAccent[700],),),
+        ),
+      ],
     );
   }
 
@@ -133,8 +154,12 @@ class _GetRouteState extends State<GetRoute> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Get Route'),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent[700],
       ),
       body: Container(
+          padding: EdgeInsets.fromLTRB(20.0,40,20.0,20.0),
+          width: MediaQuery.of(context).size.width,
           child: _childWidget
       ),
     );

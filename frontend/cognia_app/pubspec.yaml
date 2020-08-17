@@ -53,6 +53,8 @@ flutter:
   assets:
     - assets/images/cognia_logo.png
     - assets/images/google_logo.png
+    - assets/images/house_icon.png
+    - assets/images/route_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -17,7 +17,7 @@ class _MonitorPathState extends State<MonitorPath> {
   LocationOptions locationOptions = LocationOptions(
     accuracy: LocationAccuracy.high,
     distanceFilter: 0,
-    timeInterval: 5,
+    timeInterval: 10,
   );
 
   void monitorPath () async{
@@ -40,14 +40,16 @@ class _MonitorPathState extends State<MonitorPath> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Monitor Path'),
+        title: Text('Movement History'),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent[700],
       ),
       body: ListView.separated(
           itemCount: positionList.length,
           itemBuilder: (context, index){
             return Card(
               child: ListTile(
-                leading: Icon(Icons.location_on),
+                leading: Icon(Icons.location_searching, color: Colors.redAccent[700],),
                 title:
                   Column(
                     children: <Widget>[
@@ -57,10 +59,10 @@ class _MonitorPathState extends State<MonitorPath> {
                       Text('Accuracy  : ${positionList[index].accuracy}'),
                     ],
                   ),
-                trailing: Icon(Icons.arrow_right),
+                trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blueAccent[700],),
                 onTap: () async{
                   List <Placemark> placemark = await geolocator.placemarkFromPosition(positionList[index]);
-                  Navigator.pushNamed(context, '/showLocation',arguments: {'placemark': placemark[0]});
+                  Navigator.pushNamed(context, '/map',arguments: {'placemark': placemark[0]});
                 },
               ),
             );

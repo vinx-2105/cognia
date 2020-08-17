@@ -11,6 +11,7 @@ import 'home/SignUpForm.dart';
 import 'home/SignInForm.dart';
 
 //profile
+import 'location/alertCaretaker.dart';
 import 'profile/UpdateProfileForm.dart';
 import 'profile/ProfilePage.dart';
 import 'profile/AddCaretakerForm.dart';
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/patientHome', // Remove this to make login Page home
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/locationHome', // Remove this to make login Page home
       routes: {
         '/': (context)=>FirstPage(),
         '/about': (context)=>About(),
@@ -70,6 +72,7 @@ class MyApp extends StatelessWidget {
         '/locationHome' : (context) => LocationHome(),
         '/userLocation': (context) => CurrentLocation(),
         '/monitorPath' : (context) => MonitorPath(),
+        '/alertCaretaker': (context) => AlertCaretaker(),
         '/locate': (context) => Locate(),
         '/showLocation': (context) => ShowLocation(),
         '/setHome': (context) => SetHome(),

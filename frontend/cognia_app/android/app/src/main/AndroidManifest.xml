@@ -14,7 +14,7 @@
         android:label="cognia_app"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCC2xndO0zmFRa8aklCldGTPmjDfOYRhVU"/>
+            android:value="AIzaSyDhNd9rHWBNf-2j1ev3YROuccznXcV9FfA"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

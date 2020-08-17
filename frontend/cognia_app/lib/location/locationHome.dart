@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 
 class LocationHome extends StatelessWidget {
 
-  RoundedRectangleBorder shape =  RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(20.0),
-    side: BorderSide(
-      color: Colors.black,
-      width: 3.0,
-      )
-    );
-
   TextStyle textStyle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
@@ -26,64 +18,70 @@ class LocationHome extends StatelessWidget {
         backgroundColor: Colors.blueAccent[700],
       ),
       body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-                child: FlatButton.icon(
-                  onPressed: () {Navigator.pushNamed(context, '/setHome');},
-                  icon: Icon(Icons.arrow_right),
-                  label: Text('Set Home', style: textStyle,),
-                  shape: shape,
-                  padding: EdgeInsets.all(10.0),
-                ),
+        padding: EdgeInsets.all(20.0),
+        width: MediaQuery.of(context).size.width,
+        child: GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: 1,
+          crossAxisSpacing: 10.0,
+          mainAxisSpacing: 10.0,
+          children: <Widget>[
+            FlatButton(
+              onPressed: () {Navigator.pushNamed(context, '/setHome');},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.home, size: 70, color: Colors.blueAccent[700],),
+                  Text('Set Home', style: textStyle,),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-                child: FlatButton.icon(
-                  onPressed: () {Navigator.pushNamed(context, '/userLocation');},
-                  icon: Icon(Icons.arrow_right),
-                  label: Text('Current Location', style: textStyle,),
-                  shape: shape,
-                  padding: EdgeInsets.all(10.0),
-                ),
+              padding: EdgeInsets.all(5.0),
+            ),
+            FlatButton(
+              onPressed: () {Navigator.pushNamed(context, '/userLocation');},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.location_on, size: 70, color: Colors.blueAccent[700],),
+                  Text('My Location', style: textStyle,),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-                child: FlatButton.icon(
-                  onPressed: () {Navigator.pushNamed(context, '/getRoute');},
-                  icon: Icon(Icons.arrow_right),
-                  label: Text('Get Route', style: textStyle,),
-                  shape: shape,
-                  padding: EdgeInsets.all(10.0),
-                ),
+              padding: EdgeInsets.all(5.0),
+            ),
+            FlatButton(
+              onPressed: () {Navigator.pushNamed(context, '/getRoute');},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.navigation, size: 70, color: Colors.blueAccent[700],),
+                  Text('Get Route', style: textStyle,),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-                child: FlatButton.icon(
-                  onPressed: () {Navigator.pushNamed(context, '/monitorPath');},
-                  icon: Icon(Icons.arrow_right),
-                  label: Text('Monitor Path', style: textStyle,),
-                  shape: shape,
-                  padding: EdgeInsets.all(10.0),
-                ),
+              padding: EdgeInsets.all(5.0),
+            ),
+            FlatButton(
+              onPressed: () {Navigator.pushNamed(context, '/monitorPath');},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.error, size: 70, color: Colors.blueAccent[700],),
+                  Text('Movement', style: textStyle,),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-                child: FlatButton.icon(
-                  onPressed: () {Navigator.pushNamed(context, '/locate');},
-                  icon: Icon(Icons.arrow_right),
-                  label: Text('Locate Address', style: textStyle,),
-                  shape: shape,
-                  padding: EdgeInsets.all(10.0),
-                ),
+              padding: EdgeInsets.all(5.0),
+            ),
+            FlatButton(
+              onPressed: () {Navigator.pushNamed(context, '/alertCaretaker');},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.error, size: 70, color: Colors.blueAccent[700],),
+                  Text('Alert Caretaker', style: textStyle,),
+                ],
               ),
-            ],
-          ),
+              padding: EdgeInsets.all(5.0),
+            ),
+          ],
         ),
       ),
     );
