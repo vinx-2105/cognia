@@ -47,7 +47,7 @@ def get_user_scores(request):
                 {
                     'duration': score.duration,
                     'moves': score.moves,
-                    'timestamp': score.timestamp.strftime("%Y/%m/%d, %H:%M:%S")
+                    'timestamp': score.timestamp.strftime("%Y-%m-%d, %H:%M:%S")
                 }
             )
 
@@ -63,7 +63,7 @@ def register_game_score(request):
     if request.method=='POST':
         profile = request.user .profile
         # # 2020-08-18T12:19:19Z
-        timestamp = datetime.strptime(request.data.get('timestamp'),'%Y/%m/%d %H:%M:%S')
+        timestamp = datetime.strptime(request.data.get('timestamp'),'%Y-%m-%d %H:%M:%S')
         user_game_score = GameScore(user_profile=profile, moves=int(request.data.get('moves')), duration=int(request.data.get('duration')), timestamp=timestamp)
         user_game_score.save()
 

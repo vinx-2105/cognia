@@ -48,7 +48,7 @@ def get_user_location_history(request):
                 {
                     'latitude': loc.latitude,
                     'longitude': loc.longitude,
-                    'timestamp': loc.timestamp.strftime("%Y/%m/%d, %H:%M:%S")
+                    'timestamp': loc.timestamp.strftime("%Y-%m-%d, %H:%M:%S")
                 }
             )
 
@@ -68,7 +68,7 @@ def get_user_last_location(request):
         response_data = {
             'latitude': user_latest_loc.latitude,
             'longitude': user_latest_loc.longitude,
-            'timestamp': user_latest_loc.timestamp.strftime("%Y/%m/%d, %H:%M:%S")
+            'timestamp': user_latest_loc.timestamp.strftime("%Y-%m-%d, %H:%M:%S")
         }
 
 
@@ -84,7 +84,7 @@ def register_user_location(request):
     print(request)
     if request.method=='POST':
         profile = request.user.profile
-        timestamp = datetime.strptime(request.data.get('timestamp'),'%Y/%m/%d %H:%M:%S')
+        timestamp = datetime.strptime(request.data.get('timestamp'),'%Y-%m-%d %H:%M:%S')
         timestamp = make_aware(timestamp)
         user_loc = Location(user_profile=profile, latitude=request.data.get('latitude'), longitude=request.data.get('longitude'), timestamp=timestamp)
         # print(user_loc)
