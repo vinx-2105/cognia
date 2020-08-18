@@ -3,4 +3,4 @@ venv
 .vscode
 **/migrations/**
 !**/migrations/__init__.py
-*sqlite3
+backend/cognia/db.sqlite3
