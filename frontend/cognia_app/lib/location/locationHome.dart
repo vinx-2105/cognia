@@ -13,7 +13,7 @@ class LocationHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LOCATION'),
+        title: Text('Location Home'),
         centerTitle: true,
         backgroundColor: Colors.blueAccent[700],
       ),
@@ -77,6 +77,17 @@ class LocationHome extends StatelessWidget {
                 children: <Widget>[
                   Icon(Icons.error, size: 70, color: Colors.blueAccent[700],),
                   Text('Alert Caretaker', style: textStyle,),
+                ],
+              ),
+              padding: EdgeInsets.all(5.0),
+            ),
+            FlatButton(
+              onPressed: () {Navigator.pushNamed(context, '/locationSetting');},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.settings, size: 70, color: Colors.blueAccent[700],),
+                  Text('Settings', style: textStyle,),
                 ],
               ),
               padding: EdgeInsets.all(5.0),

@@ -17,7 +17,7 @@ class CurrentLocation extends StatelessWidget {
     getCurrentLocation();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Getting User Location'),
+        title: Text('User Location'),
       ),
       body: Container(
         child: SpinKitFadingCube(
