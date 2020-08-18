@@ -104,6 +104,8 @@ def get_profile(request):
             'last_name':user.last_name,
             'gender': profile.gender,
             'role': profile.role,
+            'home_address': profile.home_address,
+            'phone': profile.phone, 
             'caretakers':[str(caretaker) for caretaker in profile.caretakers.all()]
         }
         return Response(data=data, status=HTTP_200_OK)
@@ -118,8 +120,12 @@ def update_profile(request):
         profile = request.user.profile
         _gender = request.data.get('gender')
         _role = request.data.get('role')
+        _home_address = request.data.get('home_address')
+        _phone = request.data.get('phone')
         profile.gender = _gender
         profile.role = _role
+        profile.home_address = _home_address
+        profile.phone = _phone
         profile.save()
         return Response(data={'response':'Profile Updated'}, status=HTTP_200_OK)
     return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)

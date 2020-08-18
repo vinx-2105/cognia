@@ -28,26 +28,27 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode
 
 from datetime import datetime
-from .models import GameScore
+from .models import Location
+
+from django.utils.timezone import make_aware
 
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
-def get_user_scores(request):
+def get_user_location_history(request):
     if request.method=='POST':
-        user = request.user 
-        profile = user.profile
+        profile = request.user.profile
 
-        user_game_scores = GameScore.objects.filter(user_profile=profile)
-        
+        user_locations = Location.objects.filter(user_profile=profile)
+
         response_data = []
 
-        for score in user_game_scores:
+        for loc in user_locations:
             response_data.append(
                 {
-                    'duration': score.duration,
-                    'moves': score.moves,
-                    'timestamp': score.timestamp.strftime("%Y/%m/%d, %H:%M:%S")
+                    'latitude': loc.latitude,
+                    'longitude': loc.longitude,
+                    'timestamp': loc.timestamp.strftime("%Y/%m/%d, %H:%M:%S")
                 }
             )
 
@@ -58,15 +59,37 @@ def get_user_scores(request):
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
-def register_game_score(request):
+def get_user_last_location(request):
+    if request.method=='POST':
+        profile = request.user.profile
+
+        user_latest_loc = Location.objects.filter(user_profile=profile).order_by('-timestamp')[0]
+
+        response_data = {
+            'latitude': user_latest_loc.latitude,
+            'longitude': user_latest_loc.longitude,
+            'timestamp': user_latest_loc.timestamp.strftime("%Y/%m/%d, %H:%M:%S")
+        }
+
+
+
+        return Response(data=response_data, status=HTTP_200_OK)
+    return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def register_user_location(request):
     print(request)
     if request.method=='POST':
-        profile = request.user .profile
-        # # 2020-08-18T12:19:19Z
+        profile = request.user.profile
         timestamp = datetime.strptime(request.data.get('timestamp'),'%Y/%m/%d %H:%M:%S')
-        user_game_score = GameScore(user_profile=profile, moves=int(request.data.get('moves')), duration=int(request.data.get('duration')), timestamp=timestamp)
-        user_game_score.save()
+        timestamp = make_aware(timestamp)
+        user_loc = Location(user_profile=profile, latitude=request.data.get('latitude'), longitude=request.data.get('longitude'), timestamp=timestamp)
+        # print(user_loc)
+        user_loc.save()
 
-        return Response(data={'response':'Game Score Registered'}, status=HTTP_200_OK)
+        return Response(data={'response':'User Location Registered'}, status=HTTP_200_OK)
     return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)
 

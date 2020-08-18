@@ -10,5 +10,5 @@ urlpatterns = [
     path('update_profile/', update_profile, name='update_profile'),
     path('add_caretaker/', add_caretaker, name='add_caretaker'),
     path('remove_caretaker/', remove_caretaker, name='remove_caretaker'),
-    path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate, name='activate'),
+    # path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate, name='activate'),
 ]

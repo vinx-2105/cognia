@@ -10,6 +10,8 @@ class Profile(models.Model):
     gender = models.CharField(max_length=7)
     role = models.CharField(max_length=10)
     caretakers = models.ManyToManyField("self")
+    home_address = models.TextField()
+    phone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.user.first_name + " "+self.user.last_name
