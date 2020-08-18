@@ -1,0 +1,6 @@
+venv
+*pyc
+.vscode
+**/migrations/**
+!**/migrations/__init__.py
+*sqlite3
