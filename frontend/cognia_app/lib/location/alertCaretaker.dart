@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:sms_maintained/sms.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'locationDefaults.dart' as defaults;
 
 class AlertCaretaker extends StatelessWidget {
 
+  static const platform = const MethodChannel('sendSms');
+
   @override
   Widget build(BuildContext context) {
+
+    if(defaults.isSMSEnabled) {
+      SmsSender sender = new SmsSender();
+      sender.sendSms(
+          new SmsMessage(defaults.alertNumber, defaults.alertMessage));
+    }
+    if(defaults.isCallEnabled) {
+      launch("tel:${defaults.alertNumber}");
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('ALERT CARETAKER'),
+        title: Text('Alert Caretaker'),
         centerTitle: true,
         backgroundColor: Colors.blueAccent[700],
       ),

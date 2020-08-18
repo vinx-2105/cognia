@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:toast/toast.dart';
+import 'locationDefaults.dart' as defaults;
 
 class GetRoute extends StatefulWidget {
   @override
@@ -14,8 +15,6 @@ class _GetRouteState extends State<GetRoute> {
 
   final sourceField = TextEditingController();
   final destField = TextEditingController();
-
-  final homeAddress = "IIT Ropar";
 
   Geolocator geolocator = Geolocator();
 
@@ -44,7 +43,7 @@ class _GetRouteState extends State<GetRoute> {
       sourcePlacemark = await geolocator.placemarkFromAddress(sourceField.text);
     }
 
-    List<Placemark> destPlacemark = await geolocator.placemarkFromAddress(destField.text == "Home" ? homeAddress : destField.text);
+    List<Placemark> destPlacemark = await geolocator.placemarkFromAddress(destField.text);
 
     _markers.add(Marker(
         markerId: MarkerId('sourcePin'),
@@ -126,7 +125,7 @@ class _GetRouteState extends State<GetRoute> {
                 border: InputBorder.none,
                 hintText: 'Enter Destination Address',
                 hintStyle: TextStyle(fontSize: 22),
-                  suffixIcon: IconButton(icon: Icon(Icons.home), onPressed: () {destField.text = "Home";})
+                  suffixIcon: IconButton(icon: Icon(Icons.home), onPressed: () {destField.text = defaults.homeAddress;})
               ),
               style: TextStyle(fontSize: 22),
             ),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'locationDefaults.dart' as defaults;
 
 class SetHome extends StatelessWidget {
 
   final homeAddressField = TextEditingController();
-  var homeAddress = "IIT Ropar";
 
   Geolocator geolocator = Geolocator();
 
   void showOnMap(context) async{
-    List<Placemark> placemark = await geolocator.placemarkFromAddress(homeAddress);
+    List<Placemark> placemark = await geolocator.placemarkFromAddress(defaults.homeAddress);
     Navigator.pushNamed(context, '/map', arguments: {'placemark': placemark[0]});
   }
 
@@ -17,7 +17,7 @@ class SetHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('SET HOME'),
+          title: Text('Set Home'),
           centerTitle: true,
           backgroundColor: Colors.blueAccent[700],
       ),
@@ -46,7 +46,7 @@ class SetHome extends StatelessWidget {
                   ),
                   FlatButton.icon(
                     onPressed: () {
-                      homeAddress = homeAddressField.text;
+                      defaults.homeAddress = homeAddressField.text;
                     },
                     icon: Icon(Icons.save, color: Colors.blueAccent[700], size: 30,),
                     label: Text('Save', style: TextStyle(fontSize: 24, color: Colors.blueAccent[700]), ),
