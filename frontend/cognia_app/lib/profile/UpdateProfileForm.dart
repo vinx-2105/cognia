@@ -35,6 +35,8 @@ class UpdateProfileFormState extends State<UpdateProfileForm> {
 
   String _gender = "Male";
   String _role ="Patient";
+  String _phone="9999900000";
+  String _home_address="XYZ City";
 
 
   // @override
@@ -116,6 +118,82 @@ class UpdateProfileFormState extends State<UpdateProfileForm> {
                         .toList(),
                     ),
                     SizedBox(height: 40.0),
+                    TextFormField(
+                      style: TextStyle(
+                        fontSize: 40.0,color: Colors.white, fontWeight: FontWeight.bold,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "phone",
+                        hintStyle: TextStyle(fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.bold ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: Colors.white)
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: Colors.white)
+                        ),
+                        errorStyle: TextStyle(
+                          fontSize: 20.0,color: Colors.grey[50],
+                        )
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'phone cannot be empty';
+                        }
+                        else if(value.length>12){
+                          return 'phone number is too long';
+                        }
+                        else if(value.length<10){
+                          return 'phone number is too short';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.phone,
+                      onChanged: (String newValue) {
+                        setState(() {
+                          _phone = newValue;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      height: 40.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        fontSize: 40.0,color: Colors.white, fontWeight: FontWeight.bold,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "home address",
+                        hintStyle: TextStyle(fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.bold ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: Colors.white)
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: Colors.white)
+                        ),
+                        errorStyle: TextStyle(
+                          fontSize: 20.0,color: Colors.grey[50],
+                        )
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'home address cannot be empty';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text, 
+                      onChanged: (String newValue) {
+                        setState(() {
+                          _home_address = newValue;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      height: 40.0,
+                    ),
                     FlatButton(
                       onPressed: (){
                         if (_formKey.currentState.validate()) {
@@ -123,6 +201,8 @@ class UpdateProfileFormState extends State<UpdateProfileForm> {
                           //update the profile using the API
                           _updateProfileData.setRole(_role);
                           _updateProfileData.setGender(_gender);
+                          _updateProfileData.setPhone(_phone);
+                          _updateProfileData.setHomeAddress(_home_address);
 
                           _formKey.currentState.save();
                           updateProfile(_updateProfileData).then((value)  {

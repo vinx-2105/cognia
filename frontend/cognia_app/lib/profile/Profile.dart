@@ -5,8 +5,11 @@ class Profile{
   final String gender ;
   final String role ;
   final List<String> caretakers ;
+  final String phone;
+  final String home_address;
+  
 
-  Profile({this.first_name, this.last_name, this.username, this.gender, this.role, this.caretakers});
+  Profile({this.first_name, this.last_name, this.username, this.gender, this.role, this.caretakers, this.phone, this.home_address});
 
   factory Profile.fromJSON(Map<String, dynamic> json){
 
@@ -17,6 +20,8 @@ class Profile{
       gender: json['gender'],
       role: json['role'],
       caretakers: json['caretakers']!=null ? List.from(json['caretakers']):null,
+      phone: json['phone'],
+      home_address: json['home_address']
     );
   }
 }

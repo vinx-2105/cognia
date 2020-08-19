@@ -15,6 +15,8 @@ Future<String> updateProfile(UpdateProfileData _updateProfileData) async {
     body: jsonEncode(<String, String>{
       'gender': _updateProfileData.getGender(),
       'role': _updateProfileData.getRole(),
+      'phone': _updateProfileData.getPhone(),
+      'home_address': _updateProfileData.getHomeAddress()
     }),
   );
 

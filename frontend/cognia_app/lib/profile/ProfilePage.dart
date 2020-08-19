@@ -105,6 +105,30 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   SizedBox(height: 40.0),
                   Text(
+                    "   Phone",
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+
+                  ),
+                  Text(
+                    "   "+snapshot.data.phone,
+                    style: TextStyle(fontSize: 20.0, ),
+
+                  ),
+
+                  SizedBox(height: 40.0),
+                  Text(
+                    "   Home Address",
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+
+                  ),
+                  Text(
+                    "   "+snapshot.data.home_address,
+                    style: TextStyle(fontSize: 20.0, ),
+
+                  ),
+
+                  SizedBox(height: 40.0),
+                  Text(
                     "   Role",
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
 
@@ -130,30 +154,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 ] 
                 + 
                 this.getCaretakers(snapshot) 
-                // + 
-                // <Widget>[
-                //   Divider(
-                //     thickness: 1.0,
-                //     height: 30.0,
-                //   ),
-                //   Padding(
-                //     padding: const EdgeInsets.all(8.0),
-                //     child: FlatButton(
-                //       onPressed: (){
-                //         Navigator.pushNamed(context, '/updateProfile');
-                //       },
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(15.0),
-                //         side: BorderSide(color: Colors.white, width: 2.0),
-
-                //       ),
-                //       child: Padding(
-                //         padding: const EdgeInsets.all(5.0),
-                //         child: Text('EDIT PROFILE', style: TextStyle(color: Colors.white, fontSize: 18.0),textAlign: TextAlign.center,),
-                //       ),
-                //     ),
-                //   ),
-                // ]
+                + <Widget>[SizedBox(height: 40.0)]
+                
               )
             );
           }
