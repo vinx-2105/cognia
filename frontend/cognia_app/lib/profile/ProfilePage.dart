@@ -48,12 +48,32 @@ class _ProfilePageState extends State<ProfilePage> {
     futureProfile = fetchUserProfile();
   }
 
+  void handleClick(String value) {
+    switch (value) {
+      case 'Edit Profile':
+        Navigator.popAndPushNamed(context, '/updateProfile');
+    }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('MY PROFILE'),
         centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Edit Profile'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
 
       ),
       body: FutureBuilder<Profile>(
