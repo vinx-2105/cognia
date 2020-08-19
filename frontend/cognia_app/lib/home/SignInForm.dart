@@ -150,8 +150,7 @@ class SignInFormState extends State<SignInForm> {
                                   }
                                   else{
                                     //then go to profile
-                                    //Navigator.pushReplacementNamed(context, '/updateProfile');
-                                    Navigator.of(context).pushNamedAndRemoveUntil('/patientHome', (Route<dynamic> route)=> false);
+                                    Navigator.pushReplacementNamed(context, '/updateProfile');
                                   }
                                   //set the profile variable
                                   PROFILE =value;
