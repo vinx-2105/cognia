@@ -17,7 +17,7 @@ from rest_framework.status import (
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser,ParseError
 
-from .models import Profile
+from accounts.models import Profile
 
 from django.db import transaction
 
@@ -31,6 +31,8 @@ from datetime import datetime
 from .models import Location
 
 from django.utils.timezone import make_aware
+
+from .models import Location
 
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
@@ -75,6 +77,64 @@ def get_user_last_location(request):
 
         return Response(data=response_data, status=HTTP_200_OK)
     return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def get_patients_last_location(request):
+    if request.method=='POST':
+        profile = request.user.profile
+
+        response_data = {}
+
+        if profile.role=='Caretaker':
+            patients = profile.caretakers.all()
+            for patient in patients:
+                username = patient.user.username
+                user_latest_loc = Location.objects.filter(user_profile=patient).order_by('-timestamp')[0]
+                data_obj = {
+                    'latitude': user_latest_loc.latitude,
+                    'longitude': user_latest_loc.longitude,
+                    'timestamp': user_latest_loc.timestamp.strftime("%Y-%m-%d, %H:%M:%S")
+                }
+                response_data[username] = data_obj
+
+        else:
+            return Response(data={'error':'Only caretakers can access this data'}, status=HTTP_400_BAD_REQUEST)
+
+        return Response(data=response_data, status=HTTP_200_OK)
+    return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def get_patients_location_history(request):
+    if request.method=='POST':
+        profile = request.user.profile
+
+        response_data = {}
+
+        if profile.role=='Caretaker':
+            patients = profile.caretakers.all()
+            for patient in patients:
+                username = patient.user.username
+                response_data[username] =[]
+                locs = Location.objects.filter(user_profile=patient)
+                for loc in locs:
+                    data_obj = {
+                        'latitude': loc.latitude,
+                        'longitude': loc.longitude,
+                        'timestamp': loc.timestamp.strftime("%Y-%m-%d, %H:%M:%S")
+                    }
+                    response_data[username].append(data_obj)
+
+        else:
+            return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)
+
+        return Response(data=response_data, status=HTTP_200_OK)
+    return Response(data={'error':'invalid request'}, status=HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(['POST'])

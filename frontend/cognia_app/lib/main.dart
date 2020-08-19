@@ -41,7 +41,7 @@ import 'location/setHome.dart';
 //Games
 import 'games/GamesMainPage.dart';
 import 'games/TileGame.dart';
-
+import 'games/ResultPage.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -89,6 +89,7 @@ class MyApp extends StatelessWidget {
         //Games
         '/games' : (context) => Games(),
         '/tileGame' : (context) => TileGame(),
+        '/results' : (context) => ResultPage(),
       },
     );
   }

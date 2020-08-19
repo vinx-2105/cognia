@@ -9,7 +9,7 @@ class Games extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('GAMES', style: TextStyle(fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.lightGreen[500],
+        backgroundColor: Colors.blueAccent[400],
         centerTitle: true,
       ),
       body: GridView.count(
@@ -46,15 +46,15 @@ class Games extends StatelessWidget {
           Padding(
             child: FlatButton(
               onPressed: (){
-                //Navigator.pushNamed(context, '/memoimagegridplaces');
+                Navigator.pushNamed(context, '/results');
               },
               padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 10.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Icon(Icons.explore, size: 120.0, color: Colors.blueAccent,),
-                  Text('game 2'
-                      '',
+                  Text(
+                    'Results',
                     style: TextStyle(fontSize: menuFontSize),
                     textAlign: TextAlign.center,
                   )
