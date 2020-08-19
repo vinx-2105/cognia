@@ -1,14 +1,16 @@
 import 'dart:async';
-
+import 'package:intl/intl.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'post_score.dart';
 
-int level = 32;
+int level = 16;
 
 class TileGame extends StatefulWidget {
   final int size;
 
-  const TileGame({Key key, this.size = 32}) : super(key: key);
+  const TileGame({Key key, this.size = 16}) : super(key: key);
   @override
   _TileGameState createState() => _TileGameState();
 }
@@ -44,6 +46,7 @@ class _TileGameState extends State<TileGame> {
 
   startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (t) {
+      if(!mounted) return;
       setState(() {
         time = time + 1;
       });
@@ -143,16 +146,25 @@ class _TileGameState extends State<TileGame> {
         actions: <Widget>[
           FlatButton(
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => TileGame(
-                    size: 32,
-                  ),
-                ),
-              );
-              level *= 2;
+
+              // Get Time Stamp
+              DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+              String str = dateFormat.format(DateTime.now());
+
+              // Make the API call, (int moves, int duration, string timestamp)
+              postScore(moves, time, str).then((value)  {
+                Fluttertoast.showToast(msg: '$value');
+                print("Success");
+                Navigator.popUntil(context, ModalRoute.withName('/games'));
+              }).catchError((err){
+                Fluttertoast.showToast(msg: '$err');
+                print(err);
+                Navigator.popUntil(context, ModalRoute.withName('/games'));
+              });
+              // Exit to home
+
             },
-            child: Text("NEXT"),
+            child: Text("BACK"),
           ),
         ],
       ),

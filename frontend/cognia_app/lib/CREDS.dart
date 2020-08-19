@@ -1,2 +1,2 @@
 var AUTH_TOKEN = "";
-const IP = "http://165.22.223.206:8000";
+const IP = "http://f20bf6f1f41a.ngrok.io";
