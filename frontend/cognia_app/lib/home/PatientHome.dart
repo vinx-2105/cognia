@@ -40,31 +40,31 @@ class PatientHome extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 10.0,
             children: <Widget>[
-              Padding(
-                  child: FlatButton(
-                    onPressed: (){},
-                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Icon(Icons.data_usage, size: 100.0, color: Colors.blueAccent,),
-                        Text(
-                          'NAT',
-                          style: TextStyle(fontSize: menuFontSize),
-                          textAlign: TextAlign.center,
-                        )
-                      ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(40.0),
-                      side: BorderSide(
-                          color: Colors.black,
-                          width: 2.0
-                      ),
-                    ),
-                  ),
-                  padding: EdgeInsets.all(10.0)
-              ),
+//              Padding(
+//                  child: FlatButton(
+//                    onPressed: (){},
+//                    padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
+//                    child: Column(
+//                      mainAxisSize: MainAxisSize.min,
+//                      children: <Widget>[
+//                        Icon(Icons.data_usage, size: 100.0, color: Colors.blueAccent,),
+//                        Text(
+//                          'NAT',
+//                          style: TextStyle(fontSize: menuFontSize),
+//                          textAlign: TextAlign.center,
+//                        )
+//                      ],
+//                    ),
+//                    shape: RoundedRectangleBorder(
+//                      borderRadius: new BorderRadius.circular(40.0),
+//                      side: BorderSide(
+//                          color: Colors.black,
+//                          width: 2.0
+//                      ),
+//                    ),
+//                  ),
+//                  padding: EdgeInsets.all(10.0)
+//              ),
               Padding(
                   child: FlatButton(
                     onPressed: (){

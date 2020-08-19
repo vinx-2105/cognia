@@ -91,33 +91,33 @@ class CaretakerHome extends StatelessWidget {
               //     ),
               //     padding: EdgeInsets.all(10.0)
               // ),
-              // Padding(
-              //     child: FlatButton(
-              //       onPressed: (){
-              //         Navigator.pushNamed(context, '/locationHome');
-              //       },
-              //       padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
-              //       child: Column(
-              //         mainAxisSize: MainAxisSize.min,
-              //         children: <Widget>[
-              //           Icon(Icons.edit_location, size: 100.0, color: Colors.blueAccent,),
-              //           Text(
-              //             'LOCATION',
-              //             style: TextStyle(fontSize: menuFontSize),
-              //             textAlign: TextAlign.center,
-              //           )
-              //         ],
-              //       ),
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: new BorderRadius.circular(40.0),
-              //         side: BorderSide(
-              //             color: Colors.black,
-              //             width: 2.0
-              //         ),
-              //       ),
-              //     ),
-              //     padding: EdgeInsets.all(10.0)
-              // ),
+               Padding(
+                   child: FlatButton(
+                     onPressed: (){
+                       Navigator.pushNamed(context, '/locationHome');
+                     },
+                     padding: EdgeInsets.symmetric(horizontal : 20.0, vertical: 16.0),
+                     child: Column(
+                       mainAxisSize: MainAxisSize.min,
+                       children: <Widget>[
+                         Icon(Icons.edit_location, size: 100.0, color: Colors.blueAccent,),
+                         Text(
+                           'LOCATION',
+                           style: TextStyle(fontSize: menuFontSize),
+                           textAlign: TextAlign.center,
+                         )
+                       ],
+                     ),
+                     shape: RoundedRectangleBorder(
+                       borderRadius: new BorderRadius.circular(40.0),
+                       side: BorderSide(
+                           color: Colors.black,
+                           width: 2.0
+                       ),
+                     ),
+                   ),
+                   padding: EdgeInsets.all(10.0)
+              ),
               // Padding(
               //     child: FlatButton(
               //       onPressed: (){

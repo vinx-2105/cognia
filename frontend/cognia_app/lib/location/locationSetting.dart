@@ -15,6 +15,7 @@ class LocationSetting extends StatelessWidget {
     maxSafeRadField.text = defaults.safeRadiusValue.toString();
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Setting'),
         centerTitle: true,

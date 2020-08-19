@@ -1,8 +1,11 @@
 import 'dart:async';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'locationDefaults.dart' as defaults;
+import 'package:intl/intl.dart';
+import '../CREDS.dart';
 
 class MonitorPath extends StatefulWidget {
   @override
@@ -16,9 +19,31 @@ class _MonitorPathState extends State<MonitorPath> {
   Geolocator geolocator = Geolocator();
   LocationOptions locationOptions = LocationOptions(
     accuracy: LocationAccuracy.high,
-    distanceFilter: 0,
-    timeInterval: 10,
+    distanceFilter: defaults.minDistMoved,
+    timeInterval: defaults.minTimeInterval,
   );
+
+  Future<String> postLastLoc(Position position) async {
+    final http.Response response = await http.post(
+      IP+'/api/locations/register_user_location/',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Token  ' +AUTH_TOKEN,
+      },
+      body: jsonEncode(<String, String>{
+        'longitude': position.longitude.toString(),
+        'latitude': position.latitude.toString(),
+        'timestamp': new DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+      }),
+    );
+
+    if(response.statusCode==200){
+      print('Last Location Updated');
+    }
+    else{
+      print('Error: Last Location Not Updated');
+    }
+  }
 
   void monitorPath () async{
     geolocator.getPositionStream(locationOptions).listen( (Position position) {
@@ -27,11 +52,11 @@ class _MonitorPathState extends State<MonitorPath> {
       }else{
         setState(() {
           positionList.add(position);
+          postLastLoc(position);
         });
       }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {

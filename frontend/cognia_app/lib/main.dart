@@ -13,6 +13,8 @@ import 'home/SignInForm.dart';
 //profile
 import 'location/alertCaretaker.dart';
 import 'location/locationSetting.dart';
+import 'location/showPatientLoc.dart';
+import 'location/trackPatientMovement.dart';
 import 'profile/UpdateProfileForm.dart';
 import 'profile/ProfilePage.dart';
 import 'profile/AddCaretakerForm.dart';
@@ -75,6 +77,8 @@ class MyApp extends StatelessWidget {
         '/locationSetting': (context) => LocationSetting(),
         '/monitorPath' : (context) => MonitorPath(),
         '/alertCaretaker': (context) => AlertCaretaker(),
+        '/lastLocation': (context) => ShowPatientLoc(),
+        '/locationHistory': (context) => TrackPatientMovement(),
         '/locate': (context) => Locate(),
         '/showLocation': (context) => ShowLocation(),
         '/setHome': (context) => SetHome(),
